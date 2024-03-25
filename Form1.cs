@@ -31,14 +31,17 @@ namespace OXGame
         string playerMarker = "X";
         private void button1_Click(object sender, EventArgs e)
         {
+            
             Button button = (Button)sender;
+            if(button.Text != "") // 避免下第二次
+                return;
             button.Text = playerMarker;
             playerMarker = playerMarker == "X" ? "O" : "X";
             label2.Text = playerMarker;
-            CheckWinner();
+            CheckWin();
         }
 
-        private void CheckWinner()
+        private void CheckWin()
         {
             if (Check(button1, button2, button3))
                 return;
@@ -59,7 +62,7 @@ namespace OXGame
 
         }
 
-        //檢查有沒有連成一條綫 
+        //判斷有沒有連成一條綫 
         private bool Check(Button btn1, Button btn2, Button btn3)
         {
             if (btn1.Text != "" && btn1.Text == btn2.Text && btn2.Text == btn3.Text)
